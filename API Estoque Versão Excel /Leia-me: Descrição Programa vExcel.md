@@ -1,7 +1,7 @@
 # Resumo sobre o programa vExcel: api_estoque_excel.py
 
 - São importadas as bibliotecas necessárias
-![image](https://github.com/user-attachments/assets/0bbf8230-c2d8-441b-9205-bf1b437d5db5)
+  ![image](https://github.com/user-attachments/assets/0bbf8230-c2d8-441b-9205-bf1b437d5db5)
 
 - Criada uma função chamada "Estoque"
 - Nela, definidos algumas variáveis de data e diretório, por exemplo
