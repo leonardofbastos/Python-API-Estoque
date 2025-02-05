@@ -1,4 +1,4 @@
-# vExcel
+# Resumo sobre o programa vExcel: api_estoque_excel.py
 
 - São importadas as bibliotecas necessárias
 - Criada uma função chamada "Estoque"
