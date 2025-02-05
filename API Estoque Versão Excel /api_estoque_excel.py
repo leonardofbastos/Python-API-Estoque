@@ -1,27 +1,22 @@
 import requests 
-import json 
 import pandas as pd
-from datetime import date, timedelta, datetime
-import mysql.connector
-from sys import argv
 import os
+from datetime import date, timedelta, datetime
+from sys import argv
 
 def Estoque():
 
     diretorio_arquivo = os.path.dirname(os.path.abspath(argv[0])) # diretório do programa
-    data_hora_geracao = datetime.now().strftime("%d-%m-%Y %H-%M-%S")
-
-    data_atual = date.today()
-    data_inicial = data_atual - timedelta(days=90)
+    data_hora_geracao = datetime.now().strftime("%d-%m-%Y %H-%M-%S") # momento atual
+    data_atual = date.today() # dia atual
+    data_inicial = data_atual - timedelta(days=90) # dia atual menos 90
     data_final = data_atual
+    offset = 0    # valor inicial do offset na chamada
+    total_registros = 0
+    todos_produtos = [] # criacao de uma lista que servirá para armazenar os dados de produtos 
 
     print("\n --------------------------------------------------------------------------------")
     print(f"📢 Iniciando importação de estoque para o período de {data_inicial} até {data_final}.")
-
-    offset = 0
-    total_registros = 0
-
-    todos_produtos = [] # criacao de uma lista que servira para armazenar os dados de produtos 
 
     try:
         while True:
