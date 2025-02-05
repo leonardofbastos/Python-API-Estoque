@@ -1,10 +1,13 @@
 # Resumo sobre o programa vExcel: api_estoque_excel.py
 
-- São importadas as bibliotecas necessárias
+- São importadas as bibliotecas necessárias:
+
   ![image](https://github.com/user-attachments/assets/0bbf8230-c2d8-441b-9205-bf1b437d5db5)
 
-- Criada uma função chamada "Estoque"
-- Nela, definidos algumas variáveis de data e diretório, por exemplo
+- Criada uma função chamada "Estoque". Nela, definidos algumas variáveis de data e diretório, por exemplo:
+
+  ![image](https://github.com/user-attachments/assets/7daa76d7-9077-42f4-b09a-7ae44f90c1fb)
+
 - Realizada requisição do tipo GET com a API
 - Criada uma variável relevante chamada "produtos"
 - Nesta, são gravados os dados da API convertidos em DataFrame através do Pandas
