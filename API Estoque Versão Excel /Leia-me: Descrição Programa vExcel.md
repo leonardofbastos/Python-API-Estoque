@@ -46,9 +46,3 @@
 - Exemplo de arquivo gerado (o mesmo encontra-se no pasta "Arquivos Gerados" deste repositório):
 
   ![image](https://github.com/user-attachments/assets/db823a78-e95b-494a-aa7d-cf590dfcab58)
-
-- Vídeo do processo:
-
-   https://github.com/user-attachments/assets/1bc23305-21ab-4342-9c3f-64934f9006b5
-
-
