@@ -6,16 +6,6 @@ import mysql.connector
 from sys import argv
 import os
 
-# dados de conexao provisorios:
-# conn = mysql.connector.connect(
-#     host="localhost",
-#     user="root",
-#     password="leonardo",
-#     database="leonardo"
-# )
-
-# cursor = conn.cursor() # permite interagir com banco de dados
-
 def Estoque():
 
     diretorio_arquivo = os.path.dirname(os.path.abspath(argv[0])) # diretório do programa
@@ -36,9 +26,8 @@ def Estoque():
     try:
         while True:
             api = requests.get(
-                f'https://www.connectin.com.br/klin/api/iprisma/estoque.php?offset={offset}&campo=dtupdate&de={data_inicial}&ate={data_final}',
-                headers={'token': '56daa4db71e84b0ca5fe3803bc14812d',
-                        'cookie': 'PHPSESSID=1a6db49a6945f0629493aa5d5ee084a5'}
+                f'url_ocultada_xxxxxxxxxxxxxxxx_?offset={offset}&campo=dtupdate&de={data_inicial}&ate={data_final}',
+                headers={'token': 'inserir_token_xxxxxxxxxxxxx'}
             )
 
             if api.status_code == 200:
@@ -83,9 +72,6 @@ def Estoque():
 
     except Exception as e:
         print(f"❌ Erro durante a importação: {e}")
-
-    # finally:
-        # conn.close()  # Garantia de fechamento da conexão
 
     print(f"❗ Processamento concluído! Total de registros inseridos: {total_registros}")
     print("\n --------------------------------------------------------------------------------")
