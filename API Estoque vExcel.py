@@ -1,0 +1,93 @@
+import requests 
+import json 
+import pandas as pd
+from datetime import date, timedelta, datetime
+import mysql.connector
+from sys import argv
+import os
+
+# dados de conexao provisorios:
+# conn = mysql.connector.connect(
+#     host="localhost",
+#     user="root",
+#     password="leonardo",
+#     database="leonardo"
+# )
+
+# cursor = conn.cursor() # permite interagir com banco de dados
+
+def Estoque():
+
+    diretorio_arquivo = os.path.dirname(os.path.abspath(argv[0])) # diretório do programa
+    data_hora_geracao = datetime.now().strftime("%d-%m-%Y %H-%M-%S")
+
+    data_atual = date.today()
+    data_inicial = data_atual - timedelta(days=90)
+    data_final = data_atual
+
+    print("\n --------------------------------------------------------------------------------")
+    print(f"📢 Iniciando importação de estoque para o período de {data_inicial} até {data_final}.")
+
+    offset = 0
+    total_registros = 0
+
+    todos_produtos = [] # criacao de uma lista que servira para armazenar os dados de produtos 
+
+    try:
+        while True:
+            api = requests.get(
+                f'https://www.connectin.com.br/klin/api/iprisma/estoque.php?offset={offset}&campo=dtupdate&de={data_inicial}&ate={data_final}',
+                headers={'token': '56daa4db71e84b0ca5fe3803bc14812d',
+                        'cookie': 'PHPSESSID=1a6db49a6945f0629493aa5d5ee084a5'}
+            )
+
+            if api.status_code == 200:
+                api = api.json()
+
+                # Verifica se a chave 'data' existe e contém uma lista válida
+                if not isinstance(api.get('data'), list) or not api['data']:
+                    print("❗ Nenhum dado restante para importar.")
+                    break 
+
+                produtos = pd.DataFrame(api['data'])  # Converte JSON em DataFrame
+            else:
+                print("❌ Erro ao acessar API:", api.status_code)
+                break
+
+            remover_colunas = ["0", "1", "2", "3", "4", "5", "6", "7"] 
+            produtos = produtos.drop(columns=remover_colunas, errors="ignore")
+
+            todos_produtos.append(produtos) # salva produtos em lista
+
+            total_registros += len(produtos)
+            print(f"💻 Lote de {len(produtos)} registros inserido com sucesso. Offset atual = {offset}")
+            # print(produtos)
+
+            offset += 1000  # Atualiza o offset para buscar os próximos 1000 registros
+
+        if todos_produtos:
+
+            pasta_arquivo = os.path.join(diretorio_arquivo, "Arquivos Gerados")
+            os.makedirs(pasta_arquivo, exist_ok=True)
+            caminho_arquivo = os.path.join(pasta_arquivo, f"Estoque_Completo_{data_hora_geracao}.xlsx")
+            
+            df_final = pd.concat(todos_produtos, ignore_index=True)
+            df_final.to_excel(caminho_arquivo, index=False, engine="openpyxl") # openpyxl é o motor para salvar em xlsx
+
+            print(f"✅ Arquivo Excel gerado com sucesso! Total de registros: {len(df_final)}")
+        else:
+            print("❗ Nenhum dado gravado.")
+
+        # print(data_hora_geracao)
+        print(f"✔️ O arquivo foi salvo em: {diretorio_arquivo}")
+
+    except Exception as e:
+        print(f"❌ Erro durante a importação: {e}")
+
+    # finally:
+        # conn.close()  # Garantia de fechamento da conexão
+
+    print(f"❗ Processamento concluído! Total de registros inseridos: {total_registros}")
+    print("\n --------------------------------------------------------------------------------")
+
+Estoque()
