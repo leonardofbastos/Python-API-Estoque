@@ -62,7 +62,6 @@ def Estoque():
         else:
             print("❗ Nenhum dado gravado.")
 
-        # print(data_hora_geracao)
         print(f"✔️ O arquivo foi salvo em: {diretorio_arquivo}")
 
     except Exception as e:
