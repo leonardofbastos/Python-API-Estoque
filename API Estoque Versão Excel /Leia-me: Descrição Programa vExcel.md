@@ -1,5 +1,12 @@
-# Resumo sobre o programa vExcel: api_estoque_excel.py
+# *Resumo sobre o programa vExcel: api_estoque_excel.py*
 
+1. Descrição do código
+2. Conclusão
+   
+---
+
+***1. Descrição do código:***
+   
 - São importadas as bibliotecas e módulos necessários:
 
   ![image](https://github.com/user-attachments/assets/0bbf8230-c2d8-441b-9205-bf1b437d5db5)
@@ -27,3 +34,16 @@
 - Por fim, é executada validação de erros e finalizada a função Estoque:
 
   ![image](https://github.com/user-attachments/assets/4d41d83b-41fb-4412-a39c-5ccb8a1e472b)
+
+---
+
+***2. Conclusão:***
+
+- Exemplo do retorno apresentado na interface, com as etapas executadas pelo programa:
+
+  ![image](https://github.com/user-attachments/assets/4941bbf4-c507-41ae-900f-6fb1b9fe7249)
+
+- Exemplo de arquivo gerado (o mesmo encontra-se no pasta "Arquivos Gerados" deste repositório):
+
+  ![image](https://github.com/user-attachments/assets/db823a78-e95b-494a-aa7d-cf590dfcab58)
+
