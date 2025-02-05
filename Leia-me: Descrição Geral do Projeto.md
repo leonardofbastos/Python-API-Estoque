@@ -17,6 +17,3 @@ A API possui uma estrutura onde, em sua URL podem ser informados critérios de d
 O desafio foi aplicar no código uma função que conseguisse selecionar determinada data, ler a primeira página com 1000 itens e, após isso, avançar para uma nova chamada, até que se leia todos os itens.
 
 Por fim, processar todos os registros para uma planilha de Excel ou tabela de banco de dados, possibilitando tratamentos futuros utilizando outras ferramentas e SQL, isolando o processo de captura de dados da API.
-
-![image](https://github.com/user-attachments/assets/df172b4d-c601-4e67-9a82-d565f4a61181)
-
